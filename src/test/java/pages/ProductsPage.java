@@ -28,7 +28,7 @@ public class ProductsPage extends Page {
     private void initializeProductCardBlocks() {
         products = new ArrayList<>();
         for (WebElement productElement : productElements) {
-            ProductCardBlock productCardBlock = new ProductCardBlock();
+            ProductCardBlock productCardBlock = new ProductCardBlock(productElement);
             products.add(productCardBlock);
         }
     }

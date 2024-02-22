@@ -3,6 +3,8 @@ package elements.blocks;
 import lombok.Getter;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import pages.Page;
 
 @Getter
@@ -23,7 +25,7 @@ public class ProductCardBlock extends Page {
     @FindBy(xpath = ".//button[contains(@data-test,'add-to-cart')]")
     private WebElement addToCartButton;
 
-    public ProductCardBlock() {
-        super();
+    public ProductCardBlock(WebElement productElement) {
+        PageFactory.initElements(new DefaultElementLocatorFactory(productElement), this);
     }
 }
