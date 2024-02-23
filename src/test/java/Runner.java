@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty", "html:target/reports/cucumber-report.html"},
         features = {"src/test/resources/features"},
         glue = {"steps"},
-        tags = "@ProductList"
+        tags = "@e2e"
         )
 public class Runner {
 }

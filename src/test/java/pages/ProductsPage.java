@@ -2,6 +2,7 @@ package pages;
 
 import elements.blocks.ProductCardBlock;
 import lombok.Getter;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -14,6 +15,9 @@ public class ProductsPage extends Page {
 
     @FindBy(xpath = "//span[@class='title']")
     private WebElement pageTitle;
+
+    @FindBy(xpath = "//span[@class='shopping_cart_badge']")
+    private WebElement yourCartLabel;
 
     @FindBy(xpath = "//div[@class='inventory_item']")
     private List<WebElement> productElements;
@@ -35,5 +39,21 @@ public class ProductsPage extends Page {
 
     public boolean isAt() {
         return pageTitle.isDisplayed();
+    }
+
+    public boolean isCartEmpty() {
+        try {
+            return !yourCartLabel.isDisplayed();
+        }
+        catch (NoSuchElementException e) {
+            return true;
+        }
+    }
+
+    public ProductCardBlock getProductCardByTitle(String title) {
+        return products.stream()
+                .filter(product -> product.getProductTitle().getText().equals(title))
+                .findFirst()
+                .orElseThrow();
     }
 }
