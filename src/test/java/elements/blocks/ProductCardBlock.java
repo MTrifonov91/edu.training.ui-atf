@@ -28,4 +28,5 @@ public class ProductCardBlock extends Page {
     public ProductCardBlock(WebElement productElement) {
         PageFactory.initElements(new DefaultElementLocatorFactory(productElement), this);
     }
+
 }
